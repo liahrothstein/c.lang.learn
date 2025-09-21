@@ -17,23 +17,23 @@ int main() {
     int resultNumArray[20] = {};
 
     printf("Initial number array:\n"); /*print all initial array*/
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < arrayLength; i++) {
         printf("%d ", numArray[i]);
     };
     
     count = 1; /*fill result array of numbers with odd indices*/
-    for (i = count; i < 20; i = i + 2) {
+    for (i = count; i < arrayLength; i = i + 2) {
         resultNumArray[i - count] = numArray[i];
         count++;
     };
     count = (arrayLength / 2); /*fill result array of numbers with even indices*/
-    for (i = 0; i < 20; i = i + 2) {
+    for (i = 0; i < arrayLength; i = i + 2) {
         resultNumArray[count] = numArray[i];
         count++;
     };
     
     printf("\nResult number array:\n"); /*print all result array*/
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < arrayLength; i++) {
         printf("%d ", resultNumArray[i]);
     };
 
