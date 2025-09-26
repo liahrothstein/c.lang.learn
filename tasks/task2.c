@@ -14,7 +14,7 @@ int main() {
     int count; /*counter needed to calculate index of result array*/
     int arrayLength = sizeof(numArray) / sizeof(numArray[0]);
     
-    int resultNumArray[20] = {};
+    int resultNumArray[arrayLength];
 
     printf("Initial number array:\n"); /*print all initial array*/
     for (i = 0; i < arrayLength; i++) {
