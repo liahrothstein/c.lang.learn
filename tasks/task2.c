@@ -16,6 +16,8 @@ int main() {
     
     int resultNumArray[arrayLength];
 
+    printf("Hello user, this programm transforms an array so that elements with odd indices come first, then elements with even indices\n\n");
+
     printf("Initial number array:\n"); /*print all initial array*/
     for (i = 0; i < arrayLength; i++) {
         printf("%d ", numArray[i]);
@@ -32,7 +34,7 @@ int main() {
         count++;
     };
     
-    printf("\nResult number array:\n"); /*print all result array*/
+    printf("\n\nResult number array:\n"); /*print all result array*/
     for (i = 0; i < arrayLength; i++) {
         printf("%d ", resultNumArray[i]);
     };
