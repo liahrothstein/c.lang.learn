@@ -1,7 +1,7 @@
 /*
 Task 3 - Develop programm that transforms an array so that elements with odd indices come first, then elements with even indices, and with using pointers
 Author: Student Novikov D.A.
-Date: 21.09.25
+Date: 27.09.25
 Ver: 01
 */
 

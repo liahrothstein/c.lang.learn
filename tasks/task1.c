@@ -5,7 +5,7 @@ Date: 19.09.25
 Ver: 01
 */
 
-#include <stdio.h> /*lib input and output*/
+#include <stdio.h> /*import header file of input and output*/
 
 #include "../consts/boolean.c"
 
