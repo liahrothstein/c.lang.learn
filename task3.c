@@ -7,7 +7,7 @@ Ver: 01
 
 #include <stdio.h> /*import header file of input and output*/
 
-#include "../consts/num-array.c" /*import initial array*/
+int numArray[20] = {51, 8, 98, 24, 35, 19, 33, 60, 88, 99, 8, 73, 57, 78, 52, 56, 8, 82, 24, 26};
 
 int main() {
     int i; /*index*/

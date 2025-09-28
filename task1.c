@@ -7,7 +7,7 @@ Ver: 01
 
 #include <stdio.h> /*import header file of input and output*/
 
-#include "../consts/boolean.c"
+const int true = 1;
 
 int main() {
     int currentNum;
