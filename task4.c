@@ -24,10 +24,7 @@ int main() {
 
     printf("Hello user, this program changes the input string so that between identical characters there is the '=' symbol and between different characters there is the '*' symbol\n\n");
 
-    printf("Initial string: ");
-    for (i = 0; i < wordLength; i++) {
-        printf("%c", word[i]);
-    };
+    printf("Initial string: %s", word);
     
     prevInd = 0;
     for (i = 1; i < wordLength - 1; i++) { /*fill each character to result string*/
@@ -40,10 +37,7 @@ int main() {
         prevInd++;
     };
     
-    printf("\n\nTransformed string: ");
-    for (i = 0; i < wordLength * 2; i++) {
-        printf("%c", transformedWord[i]);
-    };
+    printf("\n\nTransformed string: %s", transformedWord);
 
     return 0;
 }
