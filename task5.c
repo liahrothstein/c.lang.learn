@@ -1,7 +1,7 @@
 /*
-Task 2 - Develop programm that transforms an array so that elements with odd indices come first, then elements with even indices
+Task 5 - Develop programm that transforms an array so that elements with odd indices come first, then elements with even indices, and the input data will come from the .in file and the result in .out
 Author: Student Novikov D.A.
-Date: 21.09.25
+Date: 06.10.25
 Ver: 01
 */
 
