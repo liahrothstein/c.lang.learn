@@ -9,8 +9,21 @@ Ver: 01
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
-const int true = 1;
+enum TypeOfSchool {
+    HighSchool = 1,
+    Gymnasium = 2,
+    Lyceum = 3,
+    SpecializedSchool = 4,
+    BoardingSchool = 5
+};
+
+struct School { /*structure is analogue of object*/
+    int numberOfSchool;
+    int numberOfStudents;
+    enum TypeOfSchool type;
+};
 
 int isInteger(const char *str) { /*check integer number*/
     char *endptr;
@@ -41,18 +54,21 @@ void inputInteger(char buffer[], size_t bufferSize, int *num, char inputValue[])
     };
 };
 
-enum TypeOfSchool {
-    HighSchool = 1,
-    Gymnasium = 2,
-    Lyceum = 3,
-    SpecializedSchool = 4,
-    BoardingSchool = 5
-};
+void sortSchools(struct School sortedSchools[], int numberOfSchools) {
+    int i, n;
+    struct School school;
 
-struct School { /*structure is analogue of object*/
-    int numberOfSchool;
-    int numberOfStudents;
-    enum TypeOfSchool type;
+    for (n = 1; n < numberOfSchools; n++) {
+        for (i = 0; i < numberOfSchools; i++) {
+            if (i != (numberOfSchools - 1)) {
+                if ((sortedSchools[i].numberOfStudents) < (sortedSchools[i + 1].numberOfStudents)) {
+                    school = sortedSchools[i];
+                    sortedSchools[i] = sortedSchools[i + 1];
+                    sortedSchools[i + 1] = school;
+                }
+            }
+        }
+    };
 };
 
 int main() {
@@ -60,7 +76,7 @@ int main() {
     int i, arrayLength, inputType;
 
     inputInteger(buffer, 100, &arrayLength, "number of schools");
-    struct School schoolList[arrayLength];
+    struct School schoolList[arrayLength], sortedSchools[arrayLength];
 
     printf("\nFilling school data\n===================");
     for (i = 0; i < arrayLength; i++) {
@@ -84,6 +100,9 @@ int main() {
             }
         };
     };
+
+    sortedSchools[arrayLength] = schoolList[arrayLength];
+    sortSchools(sortedSchools, arrayLength);
 
     return 0;
 }
