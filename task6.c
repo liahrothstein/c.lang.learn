@@ -54,21 +54,19 @@ void inputInteger(char buffer[], size_t bufferSize, int *num, char inputValue[])
     };
 };
 
-void sortSchools(struct School sortedSchools[], int numberOfSchools) {
-    int i, n;
-    struct School school;
+int compareSchools(const void *a, const void *b) {
+    const struct School *s1 = (const struct School *)a;
+    const struct School *s2 = (const struct School *)b;
 
-    for (n = 1; n < numberOfSchools; n++) {
-        for (i = 0; i < numberOfSchools; i++) {
-            if (i != (numberOfSchools - 1)) {
-                if ((sortedSchools[i].numberOfStudents) < (sortedSchools[i + 1].numberOfStudents)) {
-                    school = sortedSchools[i];
-                    sortedSchools[i] = sortedSchools[i + 1];
-                    sortedSchools[i + 1] = school;
-                }
-            }
-        }
-    };
+    if ((s1 -> numberOfStudents) > (s2 -> numberOfStudents)) return -1;
+    if ((s1 -> numberOfStudents) < (s2 -> numberOfStudents)) return 1;
+    
+    if ((s1 -> type) < (s2 -> type)) return -1;
+    if ((s1 -> type) > (s2 -> type)) return 1;
+};
+
+void sortSchools(struct School schools[], int numberOfSchools) {
+    qsort(schools, numberOfSchools, sizeof(struct School), compareSchools);
 };
 
 int main() {
