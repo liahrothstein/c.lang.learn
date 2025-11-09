@@ -7,14 +7,16 @@ Ver: 01
 
 #include <stdio.h> /*import header file of input and output*/
 
-#include "../consts/num-array.c" /*import initial array*/
+int numArray[20] = {51, 8, 98, 24, 35, 19, 33, 60, 88, 99, 8, 73, 57, 78, 52, 56, 8, 82, 24, 26};
 
 int main() {
     int i; /*index*/
     int count; /*counter needed to calculate index of result array*/
     int arrayLength = sizeof(numArray) / sizeof(numArray[0]);
     
-    int resultNumArray[20] = {};
+    int resultNumArray[arrayLength];
+
+    printf("Hello user, this programm transforms an array so that elements with odd indices come first, then elements with even indices\n\n");
 
     printf("Initial number array:\n"); /*print all initial array*/
     for (i = 0; i < arrayLength; i++) {
@@ -32,7 +34,7 @@ int main() {
         count++;
     };
     
-    printf("\nResult number array:\n"); /*print all result array*/
+    printf("\n\nResult number array:\n"); /*print all result array*/
     for (i = 0; i < arrayLength; i++) {
         printf("%d ", resultNumArray[i]);
     };
