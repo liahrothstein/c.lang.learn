@@ -105,7 +105,7 @@ int main() {
     int i, j, arrayLength, inputType;
     bool isUnique;
 
-    inputInteger(buffer, 100, &arrayLength, "number of schools");
+    inputInteger(buffer, 100, &arrayLength, "number of schools"); /*input and saving value in arrayLength variable*/
     struct School schoolList[arrayLength];
 
     printf("\nFilling school data\n===================");
@@ -113,7 +113,7 @@ int main() {
         printf("\nSchool #%d", i+1);
 
         do {
-            inputInteger(buffer, 100, &schoolList[i].numberOfSchool, "number of school");
+            inputInteger(buffer, 100, &schoolList[i].numberOfSchool, "number of school"); /*number of school validation*/
 
             isUnique = true;
             for (j = 0; j < i; j++) {
@@ -130,7 +130,7 @@ int main() {
         while (true) {
             printf("\n\n________________________________\n|Name              |Input Value|\n================================\n|High School       |1          |\n|Gymnasium         |2          |\n|Lyceum            |3          |\n|Specialized School|4          |\n|Boarding School   |5          |\n‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾");
             inputInteger(buffer, 100, &inputType, "type of school");
-            if ((inputType >= HighSchool) && (inputType <= BoardingSchool)) {
+            if ((inputType >= HighSchool) && (inputType <= BoardingSchool)) { /*type of school validation*/
                 schoolList[i].type = (enum TypeOfSchool) inputType;
 
                 break;
@@ -142,9 +142,9 @@ int main() {
         };
     };
 
-    sortSchools(schoolList, arrayLength);
+    sortSchools(schoolList, arrayLength); /*sorting school data*/
 
-    printSchools(schoolList, arrayLength);
+    printSchools(schoolList, arrayLength); /*printing school data*/
 
     return 0;
 }
