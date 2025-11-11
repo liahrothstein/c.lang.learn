@@ -102,7 +102,8 @@ void printSchools(struct School schools[], int n) {
 
 int main() {
     char buffer[100];
-    int i, arrayLength, inputType;
+    int i, j, arrayLength, inputType;
+    bool isUnique;
 
     inputInteger(buffer, 100, &arrayLength, "number of schools");
     struct School schoolList[arrayLength];
@@ -111,7 +112,18 @@ int main() {
     for (i = 0; i < arrayLength; i++) {
         printf("\nSchool #%d", i+1);
 
-        inputInteger(buffer, 100, &schoolList[i].numberOfSchool, "number of school");
+        do {
+            inputInteger(buffer, 100, &schoolList[i].numberOfSchool, "number of school");
+
+            isUnique = true;
+            for (j = 0; j < i; j++) {
+                if (schoolList[i].numberOfSchool == schoolList[j].numberOfSchool) {
+                    printf("\nError: Number of school is already exists");
+                    isUnique = false;
+                    break;
+                }
+            }
+        } while (!isUnique);
 
         inputInteger(buffer, 100, &schoolList[i].numberOfStudents, "number of students");
 
