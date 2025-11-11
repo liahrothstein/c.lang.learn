@@ -33,9 +33,6 @@ int isInteger(const char *str) { /*check integer number*/
 };
 
 void inputInteger(char buffer[], size_t bufferSize, int *num, char inputValue[]) {
-    int wordLength = strlen(inputValue);
-    int i;
-
     while (true) {
         printf("\n\nPlease type %s: ", inputValue);
 
@@ -63,10 +60,44 @@ int compareSchools(const void *a, const void *b) {
     
     if ((s1 -> type) < (s2 -> type)) return -1;
     if ((s1 -> type) > (s2 -> type)) return 1;
+
+    return 0;
 };
 
 void sortSchools(struct School schools[], int numberOfSchools) {
     qsort(schools, numberOfSchools, sizeof(struct School), compareSchools);
+};
+
+const char* typeToString(enum TypeOfSchool type) {
+    switch (type) {
+        case HighSchool:
+            return "High School";
+        case Gymnasium:
+            return "Gymnasium";
+        case Lyceum:
+            return "Lyceum";
+        case SpecializedSchool:
+            return "Specialized School";
+        case BoardingSchool:
+            return "Boarding School";
+        default:
+            return "Unknown type";
+    };
+};
+
+void printSchools(struct School schools[], int n) {
+    printf("\nSchool Table:\n");
+    printf("-------------------------------------------------------------------\n");
+    printf("| %-17s | %-19s | %-21s |\n", "Number of School", "Number of Students", "Type");
+    printf("-------------------------------------------------------------------\n");
+    for (int i = 0; i < n; i++) {
+        printf("| %-17d | %-19d | %-21s |\n",
+            schools[i].numberOfSchool,
+            schools[i].numberOfStudents,
+            typeToString(schools[i].type)
+        );
+    };
+    printf("-------------------------------------------------------------------\n");
 };
 
 int main() {
@@ -74,7 +105,7 @@ int main() {
     int i, arrayLength, inputType;
 
     inputInteger(buffer, 100, &arrayLength, "number of schools");
-    struct School schoolList[arrayLength], sortedSchools[arrayLength];
+    struct School schoolList[arrayLength];
 
     printf("\nFilling school data\n===================");
     for (i = 0; i < arrayLength; i++) {
@@ -99,8 +130,9 @@ int main() {
         };
     };
 
-    sortedSchools[arrayLength] = schoolList[arrayLength];
-    sortSchools(sortedSchools, arrayLength);
+    sortSchools(schoolList, arrayLength);
+
+    printSchools(schoolList, arrayLength);
 
     return 0;
 }
