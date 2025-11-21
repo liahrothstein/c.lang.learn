@@ -1,7 +1,7 @@
 /*
-Task 6 - Develop programm 
+Task 6 - Develop programm performs the following actions: sorts the city's school array by descending student number; schools with the same student number are sorted by type and displayed on the screen; and also finds the total number of lyceums and gymnasiums with a student number within a given range
 Author: Student Novikov D.A.
-Date: 06.10.25
+Date: 21.11.25
 Ver: 01
 */
 
@@ -100,51 +100,72 @@ void printSchools(struct School schools[], int n) {
     printf("-------------------------------------------------------------------\n");
 };
 
+int findSchools(int range, struct School schools[], enum TypeOfSchool type, int arrayLength){
+    int count = 0;
+
+    for (int i = 0; i < arrayLength; i++) {
+        if ((schools[i].numberOfStudents <= range) && (schools[i].type == type)) {
+            count++;
+        }
+    };
+
+    return count;
+};
+
 int main() {
     char buffer[100];
-    int i, j, arrayLength, inputType;
+    int arrayLength, inputType, range, numberOfLyceum, numberOfGymnasium;
     bool isUnique;
 
-    inputInteger(buffer, 100, &arrayLength, "number of schools"); /*input and saving value in arrayLength variable*/
+    printf("Hello user, this program performs the following actions: sorts the city's school array by descending student number; schools with the same student number are sorted by type and displayed on the screen; and also finds the total number of lyceums and gymnasiums with a student number within a given range");
+
+    inputInteger(buffer, 100, &arrayLength, "number of schools");
     struct School schoolList[arrayLength];
 
     printf("\nFilling school data\n===================");
-    for (i = 0; i < arrayLength; i++) {
-        printf("\nSchool #%d", i+1);
+
+    struct School *p;
+    for (p = schoolList; p < schoolList + arrayLength; p++) {
+        printf("\nSchool #%ld", (p - schoolList) + 1);
 
         do {
-            inputInteger(buffer, 100, &schoolList[i].numberOfSchool, "number of school"); /*number of school validation*/
+            inputInteger(buffer, 100, &p->numberOfSchool, "number of school"); /*unique number of school check*/
 
             isUnique = true;
-            for (j = 0; j < i; j++) {
-                if (schoolList[i].numberOfSchool == schoolList[j].numberOfSchool) {
-                    printf("\nError: Number of school is already exists");
+            for (struct School *q = schoolList; q < p; q++) {
+                if (p->numberOfSchool == q->numberOfSchool) {
+                    printf("\nError: Number of school already exists");
                     isUnique = false;
                     break;
                 }
             }
         } while (!isUnique);
 
-        inputInteger(buffer, 100, &schoolList[i].numberOfStudents, "number of students");
+        inputInteger(buffer, 100, &p->numberOfStudents, "number of students");
 
         while (true) {
             printf("\n\n________________________________\n|Name              |Input Value|\n================================\n|High School       |1          |\n|Gymnasium         |2          |\n|Lyceum            |3          |\n|Specialized School|4          |\n|Boarding School   |5          |\n‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾");
             inputInteger(buffer, 100, &inputType, "type of school");
-            if ((inputType >= HighSchool) && (inputType <= BoardingSchool)) { /*type of school validation*/
-                schoolList[i].type = (enum TypeOfSchool) inputType;
+            if ((inputType >= HighSchool) && (inputType <= BoardingSchool)) {
+                p->type = (enum TypeOfSchool) inputType;
 
                 break;
             } else {
                 printf("\nError: Uncorrect type of school");
-                
+
                 continue;
             }
-        };
-    };
+        }
+    }
 
-    sortSchools(schoolList, arrayLength); /*sorting school data*/
+    sortSchools(schoolList, arrayLength);
+    printSchools(schoolList, arrayLength);
 
-    printSchools(schoolList, arrayLength); /*printing school data*/
+    inputInteger(buffer, 100, &range, "student number range");
+    numberOfLyceum = findSchools(range, schoolList, Lyceum, arrayLength);
+    numberOfGymnasium = findSchools(range, schoolList, Gymnasium, arrayLength);
+
+    printf("\nTotal number of lyceums and gymnasiums with a number of students from a given range: %d\n", numberOfGymnasium + numberOfLyceum);
 
     return 0;
 }
