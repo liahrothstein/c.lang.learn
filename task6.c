@@ -6,10 +6,10 @@ Ver: 01
 */
 
 #include <stdio.h> /*import header file of input and output*/
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <stdbool.h>
+#include <stdlib.h> /*import header file of convert string in integer*/
+#include <string.h> /*import header file of functions for working with strings and character arrays*/
+#include <ctype.h> /*import header file of functions for checking and converting characters*/
+#include <stdbool.h> /*import header file of support for the Boolean type bool*/
 
 enum TypeOfSchool {
     HighSchool = 1,
@@ -117,7 +117,7 @@ int main() {
     int arrayLength, inputType, range, numberOfLyceum, numberOfGymnasium;
     bool isUnique;
 
-    printf("Hello user, this program performs the following actions: sorts the city's school array by descending student number; schools with the same student number are sorted by type and displayed on the screen; and also finds the total number of lyceums and gymnasiums with a student number within a given range");
+    printf("Hello user, this program performs the following actions:\n - sorts the city's school array by descending student number;\n - schools with the same student number are sorted by type and displayed on the screen;\n - and also finds the total number of lyceums and gymnasiums with a student number within a given range");
 
     inputInteger(buffer, 100, &arrayLength, "number of schools");
     struct School schoolList[arrayLength];
