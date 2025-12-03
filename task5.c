@@ -1,11 +1,13 @@
 /*
 Task 5 - Develop programm that transforms an array so that elements with odd indices come first, then elements with even indices, and the input data will come from the .in file and the result in .out
 Author: Student Novikov D.A.
-Date: 06.10.25
-Ver: 01
+Date: 03.12.25
+Ver: 02
 */
 
 #include <stdio.h> /*import header file of input and output*/
+
+#include "task5-arr-change.h"
 
 int main() {
     int i; /*index*/
@@ -29,16 +31,7 @@ int main() {
         printf("%d ", numArray[i]);
     };
     
-    count = 1; /*fill result array of numbers with odd indices*/
-    for (i = count; i < arrayLength; i = i + 2) {
-        resultNumArray[i - count] = numArray[i];
-        count++;
-    };
-    count = (arrayLength / 2); /*fill result array of numbers with even indices*/
-    for (i = 0; i < arrayLength; i = i + 2) {
-        resultNumArray[count] = numArray[i];
-        count++;
-    };
+    arrChange(i, count, arrayLength, numArray, resultNumArray);
     
     printf("\n\nResult number array:\n"); /*print all result array*/
     for (i = 0; i < arrayLength; i++) {
