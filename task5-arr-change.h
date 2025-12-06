@@ -1,0 +1,1 @@
+void arrChange(int i, int count, int arrayLength, int numArray[], int resultNumArray[]);

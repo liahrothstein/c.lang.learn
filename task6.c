@@ -1,8 +1,8 @@
 /*
 Task 6 - Develop programm performs the following actions: sorts the city's school array by descending student number; schools with the same student number are sorted by type and displayed on the screen; and also finds the total number of lyceums and gymnasiums with a student number within a given range
 Author: Student Novikov D.A.
-Date: 21.11.25
-Ver: 01
+Date: 03.12.25
+Ver: 02
 */
 
 #include <stdio.h> /*import header file of input and output*/
@@ -100,11 +100,11 @@ void printSchools(struct School schools[], int n) {
     printf("-------------------------------------------------------------------\n");
 };
 
-int findSchools(int range, struct School schools[], enum TypeOfSchool type, int arrayLength){
+int findSchools(int a, int b, struct School schools[], enum TypeOfSchool type, int arrayLength){
     int count = 0;
 
     for (int i = 0; i < arrayLength; i++) {
-        if ((schools[i].numberOfStudents <= range) && (schools[i].type == type)) {
+        if ((schools[i].numberOfStudents >= a) && (schools[i].numberOfStudents <= b) && (schools[i].type == type)) {
             count++;
         }
     };
@@ -114,10 +114,10 @@ int findSchools(int range, struct School schools[], enum TypeOfSchool type, int 
 
 int main() {
     char buffer[100];
-    int arrayLength, inputType, range, numberOfLyceum, numberOfGymnasium;
+    int arrayLength, inputType, range, numberOfLyceum, numberOfGymnasium, a, b;
     bool isUnique;
 
-    printf("Hello user, this program performs the following actions:\n - sorts the city's school array by descending student number;\n - schools with the same student number are sorted by type and displayed on the screen;\n - and also finds the total number of lyceums and gymnasiums with a student number within a given range");
+    printf("Hello user, this program performs the following actions:\n - sorts the city's school array by descending student number;\n - schools with the same student number are sorted by type and displayed on the screen;\n - and also finds the total number of lyceums and gymnasiums with a student number within a given range [a, b]");
 
     inputInteger(buffer, 100, &arrayLength, "number of schools");
     struct School schoolList[arrayLength];
@@ -161,9 +161,10 @@ int main() {
     sortSchools(schoolList, arrayLength);
     printSchools(schoolList, arrayLength);
 
-    inputInteger(buffer, 100, &range, "student number range");
-    numberOfLyceum = findSchools(range, schoolList, Lyceum, arrayLength);
-    numberOfGymnasium = findSchools(range, schoolList, Gymnasium, arrayLength);
+    inputInteger(buffer, 100, &a, "range of student numbers from [a");
+    inputInteger(buffer, 100, &b, "range of student numbers up to b]");
+    numberOfLyceum = findSchools(a, b, schoolList, Lyceum, arrayLength);
+    numberOfGymnasium = findSchools(a, b, schoolList, Gymnasium, arrayLength);
 
     printf("\nTotal number of lyceums and gymnasiums with a number of students from a given range: %d\n", numberOfGymnasium + numberOfLyceum);
 
